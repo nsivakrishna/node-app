@@ -28,7 +28,7 @@ node{
 			
 			
 			}
-			sh "ssh  ec2-user@3.88.60.115 ${dockerRun}"
+			sh "ssh  ubuntu@3.88.60.115 ${dockerRun}"
 		}
 	}
 }
