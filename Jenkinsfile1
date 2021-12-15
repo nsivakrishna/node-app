@@ -1,19 +1,20 @@
 pipeline {
     agent any
     environment{
-        DOCKER_TAG1 = getDockerTag()
+        DOCKER_TAG = getDockerTag()
+        NEXUS_URL  = "3.88.60.115:8080"
+        IMAGE_URL_WITH_TAG = "${NEXUS_URL}/node-app:${DOCKER_TAG}"
     }
-    stages {
-        stage('Build Docker Image') {
+    stages{
+        stage('Build Docker Image'){
             steps{
-                sh "docker build . -t kammana/nodeapp:${DOCKER_TAG1}"
+                sh "docker build . -t ${DOCKER_TAG}"
             }
-        } 
+        }
     }
 }
 
 def getDockerTag(){
-        def tag = sh script: 'git rev-parse HEAD', retirnStdout: true
-        return tag
-
+    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
 }
