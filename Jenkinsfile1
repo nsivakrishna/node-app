@@ -13,7 +13,7 @@ pipeline {
         }
       stage('Nexus Push'){
           steps{
-               withCredentials([string(credentialsId: 'docker-hub', variable: 'nexusPwd')]) {
+               withCredentials([string(credentialsId: 'docker-hub1', variable: 'nexusPwd')]) {
                     sh "docker login -u nsivaaws -p ${nexusPwd}"
                     sh "docker push ${IMAGE_URL_WITH_TAG}"
                 }
