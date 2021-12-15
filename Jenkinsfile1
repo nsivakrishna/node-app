@@ -18,7 +18,27 @@ pipeline {
                     sh "docker push nsivaaws/nodeapp:${DOCKER_TAG}"
                 }
             }
+        
         }
+       stage('Docker Deploy k8s'){
+            steps{
+                sh "chmod +x changeTag.sh"
+                sh "./changeTag.sh ${DOCKER_TAG}"
+                sshagent(['kops-machine']) {
+
+                   sh "ssh -o StrictHostKeyChecking=no services.yml node-app-pod.yml ubuntu@3.88.60.115:/home/ubuntu/ "
+                   script{
+                       try{
+                           sh "ssh ubuntu@3.88.60.115 kubectl apply -f ."
+                       }
+                       catch(error){
+                           sh "ssh ec2 ubuntu@3.88.60.115 kubectl create -f ."
+                       }
+                   }
+                }
+            }
+        }
+
     }
 }
 
