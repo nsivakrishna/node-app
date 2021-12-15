@@ -1,6 +1,6 @@
 node{
     def imgVersion = UUID.randomUUID().toString()
-    def dockerImage = "kammana/nodeapp-6pm:${imgVersion}"
+    def dockerImage = "nsivaaws/nodeapp:${imgVersion}"
     stage('Source Checkout'){
         
         git 'https://github.com/javahometech/node-app'
