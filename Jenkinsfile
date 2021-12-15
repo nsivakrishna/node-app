@@ -12,7 +12,7 @@ node{
     }
     
     stage('Push DockerHub'){
-		withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerhubPwd')]) {
+		withCredentials([string(credentialsId: 'docker-hub1', variable: 'dockerhubPwd')]) {
 			sh "docker login -u nsivaaws -p ${dockerhubPwd}"
 		}
         
