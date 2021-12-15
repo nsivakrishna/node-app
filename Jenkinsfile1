@@ -15,7 +15,7 @@ pipeline {
           steps{
                withCredentials([string(credentialsId: 'docker-hub1', variable: 'nexusPwd')]) {
                     sh "docker login -u nsivaaws -p ${nexusPwd}"
-                    sh "docker push ${IMAGE_URL_WITH_TAG}"
+                    sh "docker push nsivaaws/nodeapp:${DOCKER_TAG}"
                 }
             }
         }
