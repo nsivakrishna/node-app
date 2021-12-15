@@ -23,7 +23,7 @@ node{
 		def dockerRun = "docker run -d -p 8080:8080 --name nodeapp ${dockerImage}"
 		sshagent(['dev-docker']) {
 		    try{
-				sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.60.115 docker rm -f nodeapp "
+				sh "ssh -o StrictHostKeyChecking=no ubuntu@3.88.60.115 docker rm -f nodeapp "
 			}catch(e){
 			
 			
